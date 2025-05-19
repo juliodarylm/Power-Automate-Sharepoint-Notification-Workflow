@@ -1,0 +1,95 @@
+{
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "type": "AdaptiveCard",
+    "msteams": {
+        "width": "full"
+    },
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "🚨 New Issue Reported!",
+            "size": "ExtraLarge",
+            "weight": "Bolder",
+            "color": "Attention",
+            "wrap": true,
+            "spacing": "ExtraLarge"
+        },
+        {
+            "type": "TextBlock",
+            "text": "A new issue has been submitted to the report list. Please review the details below.",
+            "wrap": true,
+            "spacing": "Small"
+        },
+        {
+            "type": "TextBlock",
+            "text": "🧾 **Issue Summary**",
+            "weight": "Bolder",
+            "size": "Medium",
+            "spacing": "Medium",
+            "color": "Good"
+        },
+        {
+            "type": "TextBlock",
+            "text": "@{triggerBody()?['Title0/Value']}",
+            "wrap": true,
+            "size": "Large",
+            "weight": "Bolder",
+            "spacing": "Small",
+            "color": "Warning"
+        },
+        {
+            "type": "FactSet",
+            "spacing": "Medium",
+            "facts": [
+                {
+                    "title": "🆔 File Number:",
+                    "value": "@{triggerBody()?['ReportID']}"
+                },
+                {
+                    "title": "👤 Reported by:",
+                    "value": "@{triggerBody()?['Reporter/DisplayName']}"
+                },
+                {
+                    "title": "📂 Category:",
+                    "value": "@{triggerBody()?['Category/Value']}"
+                },
+                {
+                    "title": "⚙️ Type:",
+                    "value": "@{triggerBody()?['TypeofIssue/Value']}"
+                },
+                {
+                    "title": "📊 Status:",
+                    "value": "@{triggerBody()?['Status/Value']}"
+                }
+            ],
+            "targetWidth": "Wide"
+        },
+        {
+            "type": "TextBlock",
+            "text": "📝 **Details**",
+            "weight": "Bolder",
+            "size": "Medium",
+            "spacing": "Medium"
+        },
+        {
+            "type": "TextBlock",
+            "text": "@{triggerBody()?['Details']}",
+            "wrap": true,
+            "spacing": "Small",
+            "targetWidth": "Wide"
+        },
+        {
+            "type": "TextBlock",
+            "text": "🔒 *For reports tracking and response only*",
+            "isSubtle": true,
+            "size": "Small",
+            "horizontalAlignment": "Center",
+            "spacing": "ExtraLarge"
+        }
+    ],
+    "speak": "This is for Production Reports Only",
+    "msTeams": {
+        "width": "full"
+    }
+}
