@@ -1,0 +1,110 @@
+{
+  "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "type": "AdaptiveCard",
+  "msteams": {
+    "width": "full"
+  },
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "🚨 New Issue Reported",
+      "size": "ExtraLarge",
+      "weight": "Bolder",
+      "color": "Attention",
+      "wrap": true,
+      "spacing": "Large"
+    },
+    {
+      "type": "TextBlock",
+      "text": "A new report issue has been submitted on the list. Click below to view more details.",
+      "wrap": true,
+      "spacing": "Small"
+    },
+    {
+      "type": "TextBlock",
+      "text": "📌 **Issue:** @{triggerBody()?['Title']}",
+      "wrap": true,
+      "size": "Large",
+      "weight": "Bolder",
+      "spacing": "Medium"
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.ToggleVisibility",
+          "title": "🔍 Show/Hide Details",
+          "targetElements": [
+            "detailsSection"
+          ]
+        }
+      ],
+      "spacing": "Medium"
+    },
+    {
+      "type": "Container",
+      "id": "detailsSection",
+      "isVisible": false,
+      "items": [
+        {
+          "type": "FactSet",
+          "facts": [
+            {
+              "title": "📂 Category:",
+              "value": "@{triggerBody()?['Category/Value']}"
+            },
+            {
+              "title": "🔧 Type of Issue:",
+              "value": "@{triggerBody()?['TypeofIssue/Value']}"
+            },
+            {
+              "title": "🆔 File Number:",
+              "value": "@{triggerBody()?['ReportID']}"
+            },
+            {
+              "title": "🔄 Workflow-State:",
+              "value": "@{triggerBody()?['State/Value']}"
+            },
+            {
+              "title": "👤 Created by:",
+              "value": "@{triggerBody()?['DisplayName/DisplayName']}"
+            },
+            {
+              "title": "🕒 Date & Time:",
+              "value": "@{formatDateTime(triggerBody()?['Dateofoccurence'], 'MM-dd-yyyy')} @{formatDateTime(triggerBody()?['Dateofoccurence'], 'HH:mm')}"
+            },
+            {
+              "title": "📍 Site Location:",
+              "value": "@{triggerBody()?['SiteLocation/Value']}"
+            },
+            {
+              "title": "👥 Affected Users:",
+              "value": "@{triggerBody()?['Numberofaffectedusers']}"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "📝 **Details:**",
+          "weight": "Bolder",
+          "spacing": "Medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "@{triggerBody()?['Details']}",
+          "wrap": true
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "🔒 *This adaptive card is for PH Traffic only*",
+      "isSubtle": true,
+      "size": "Small",
+      "horizontalAlignment": "Center",
+      "spacing": "ExtraLarge"
+    }
+  ],
+  "speak": "This adaptive card is for PH Traffic Only"
+}
