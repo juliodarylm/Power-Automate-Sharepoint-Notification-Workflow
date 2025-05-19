@@ -1,0 +1,133 @@
+{
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "type": "AdaptiveCard",
+    "msteams": {
+        "width": "full"
+    },
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "🚨 New Ticket Has Been Added to List",
+                    "size": "ExtraLarge",
+                    "weight": "Bolder",
+                    "color": "Attention",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "**Ticket:** @{triggerBody()?['TicketID']}  \n**Title:** @{triggerBody()?['Title']}",
+                    "size": "Large",
+                    "weight": "Bolder",
+                    "color": "Warning",
+                    "wrap": true,
+                    "spacing": "Medium"
+                },
+                {
+                    "type": "FactSet",
+                    "facts": [
+                        {
+                            "title": "👤 Created By:",
+                            "value": "@{triggerBody()?['Author/DisplayName']}"
+                        },
+                        {
+                            "title": "📂 Category:",
+                            "value": "@{triggerBody()?['Category/Value']}"
+                        },
+                        {
+                            "title": "🔧 Type of Issue:",
+                            "value": "@{triggerBody()?['TypeofIssue/Value']}"
+                        },
+                        {
+                            "title": "🕒 Date Created:",
+                            "value": "@{triggerBody()?['DateCreated']}"
+                        },
+                        {
+                            "title": "📍 Impact Location:",
+                            "value": "@{triggerBody()?['SiteLocation/Value']}"
+                        },
+                        {
+                            "title": "📝 Status:",
+                            "value": "@{triggerBody()?['TicketStatus/Value']}"
+                        }
+                    ],
+                    "spacing": "Large"
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "📝 **Details**",
+                    "weight": "Bolder",
+                    "spacing": "Large",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "@{triggerBody()?['Details']}",
+                    "wrap": true,
+                    "spacing": "Small"
+                }
+            ],
+            "id": "basecontainerID"
+        },
+        {
+            "type": "Container",
+            "spacing": "ExtraLarge",
+            "separator": true,
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "🔗 Related Links",
+                    "weight": "Bolder",
+                    "spacing": "Medium",
+                    "size": "Medium"
+                },
+                {
+                    "type": "ColumnSet",
+                    "spacing": "Medium",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "ActionSet",
+                                    "actions": [
+                                        {
+                                            "type": "Action.OpenUrl",
+                                            "title": "🔗 FreshService Ticket",
+                                            "url": "@{triggerBody()?['FreshService']}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "ActionSet",
+                                    "actions": [
+                                        {
+                                            "type": "Action.OpenUrl",
+                                            "title": "🔗 Jira Ticket",
+                                            "url": "@{triggerBody()?['Jira']}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "id": "containerID"
+        }
+    ],
+    "speak": "This adaptive card is for PH Traffic Only",
+    "msTeams": {
+        "width": "full"
+    }
+}
